@@ -1,5 +1,5 @@
 " Pathogen (Plugging manager)
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 call pathogen#helptags()
 
 " No Vi Compatibility. That just sucks.
@@ -197,4 +197,10 @@ autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 col
 " python
 " ------
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-\ formatoptions+=croq softtabstop=4 textwidth=74 smartindent
+\ formatoptions+=croq softtabstop=4 textwidth=79 smartindent
+
+
+" tex
+" ------
+autocmd FileType tex setlocal noautoindent nocindent nosmartindent spell expandtab shiftwidth=4 tabstop=8 colorcolumn=81
+\ formatoptions+=aw softtabstop=4 textwidth=79 indentexpr=
