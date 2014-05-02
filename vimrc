@@ -193,12 +193,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 
-" tex
-" ---
-autocmd BufNewFile,BufRead *.tex setlocal ft=tex
-autocmd FileType tex setlocal expandtab  colorcolumn=80
-\ formatoptions+=aw textwidth=79
-
 
 " rst
 " ---
@@ -214,5 +208,7 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
 
 " tex
 " ------
+autocmd BufNewFile,BufRead *.tex setlocal ft=tex
 autocmd FileType tex setlocal noautoindent nocindent nosmartindent spell expandtab shiftwidth=4 tabstop=8 colorcolumn=81
 \ formatoptions+=aw softtabstop=4 textwidth=79 indentexpr=
+
