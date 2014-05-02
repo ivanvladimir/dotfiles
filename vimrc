@@ -1,5 +1,5 @@
 " Pathogen (Plugging manager)
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 call pathogen#helptags()
 
 " No Vi Compatibility. That just sucks.
@@ -77,6 +77,10 @@ set pastetoggle=<F9>
 " Enable filetype plugins and indention
 filetype on
 filetype plugin on
+
+" LATEX
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
 
 " Activate a permanent ruler 
 set ruler
@@ -187,6 +191,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " CSS
 " " ---
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
+
+" tex
+" ---
+autocmd BufNewFile,BufRead *.tex setlocal ft=tex
+autocmd FileType tex setlocal expandtab  colorcolumn=80
+\ formatoptions+=aw textwidth=79
+
 
 " rst
 " ---
