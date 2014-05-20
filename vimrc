@@ -1,5 +1,6 @@
 " Pathogen (Plugging manager)
-execute pathogen#infect()
+call pathogen#incubate()
+call pathogen#helptags()
 
 " No Vi Compatibility. That just sucks.
 set nocompatible
@@ -82,6 +83,10 @@ set pastetoggle=<F9>
 " Enable filetype plugins and indention
 filetype on
 filetype plugin on
+
+" LATEX
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
 
 " Activate a permanent ruler 
 set ruler
@@ -193,12 +198,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " " ---
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
-" latex
-" ---
-autocmd BufNewFile,BufRead *.tex setlocal ft=tex
-autocmd FileType tex setlocal expandtab colorcolumn=80
-\ formatoptions+=aw textwidth=78
-
 " rst
 " ---
 autocmd BufNewFile,BufRead *.rst setlocal ft=rst
@@ -208,9 +207,15 @@ autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 col
 " python
 " ------
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-\ formatoptions+=croq softtabstop=4 textwidth=78 smartindent
+\ formatoptions+=croq softtabstop=4 textwidth=79 smartindent
 
 " markdown
 " --------
 autocmd FileType mkd setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
 \ formatoptions+=aw softtabstop=4 textwidth=78 smartindent
+
+" tex
+" ------
+autocmd BufNewFile,BufRead *.tex setlocal ft=tex
+autocmd FileType tex setlocal noautoindent nocindent nosmartindent spell expandtab shiftwidth=4 tabstop=8 colorcolumn=81
+\ formatoptions+=aw softtabstop=4 textwidth=79 indentexpr=
