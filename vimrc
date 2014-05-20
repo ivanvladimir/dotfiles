@@ -1,9 +1,11 @@
 " Pathogen (Plugging manager)
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+execute pathogen#infect()
 
 " No Vi Compatibility. That just sucks.
 set nocompatible
+
+" Set map leader
+let mapleader = ','
 
 " Fix backspace indentation
 set backspace=indent,eol,start
@@ -24,6 +26,9 @@ set ffs=unix,dos,mac
 " Convince Vim it can use 256 colors inside Gnome Terminal.
 " Needs CSApprox plugin
 set t_Co=256
+
+set background=dark
+colorscheme dante
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -188,13 +193,24 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " " ---
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
+" latex
+" ---
+autocmd BufNewFile,BufRead *.tex setlocal ft=tex
+autocmd FileType tex setlocal expandtab colorcolumn=80
+\ formatoptions+=aw textwidth=78
+
 " rst
 " ---
 autocmd BufNewFile,BufRead *.rst setlocal ft=rst
-autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
-\ formatoptions+=nqt textwidth=74
+autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=81
+\ formatoptions+=aw textwidth=78
 
 " python
 " ------
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-\ formatoptions+=croq softtabstop=4 textwidth=74 smartindent
+\ formatoptions+=croq softtabstop=4 textwidth=78 smartindent
+
+" markdown
+" --------
+autocmd FileType mkd setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+\ formatoptions+=aw softtabstop=4 textwidth=78 smartindent
