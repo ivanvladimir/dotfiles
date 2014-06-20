@@ -211,6 +211,7 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
 
 " markdown
 " --------
+autocmd BufNewFile,BufRead *.markdown,*.md setf mkd
 autocmd FileType mkd setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
 \ formatoptions+=aw softtabstop=4 textwidth=78 smartindent
 
