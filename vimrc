@@ -1,5 +1,5 @@
 " Pathogen (Plugging manager)
-call pathogen#incubate()
+call pathogen#infect()
 call pathogen#helptags()
 
 " No Vi Compatibility. That just sucks.
@@ -24,12 +24,11 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-" Convince Vim it can use 256 colors inside Gnome Terminal.
-" Needs CSApprox plugin
-set t_Co=256
-
+if $COLORTERM == 'gnome-terminal'
+	  set t_Co=256
+endif
 set background=dark
-colorscheme dante
+colorscheme wombat256i
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -181,18 +180,31 @@ function! HasPaste()
     endif
 endfunction
 
-" CloseTag plugin
-autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
-autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+" Syntastic pluging
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" TagBar plugin
-let g:tagbar_usearrows = 1
-nnoremap <leader>l :TagbarToggle<CR>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
-" NERDtree on <leader>t
-nnoremap <leader>t :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" Nerd Commenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
 " CSS
 " " ---
