@@ -105,7 +105,8 @@ set tabstop=4
 set sw=4
 
 " Status line
-set statusline=%{HasPaste()}%F%m%r%h%w\ \ \ %{&ff},%Y\ \ \ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}ascii=\%03.3b,hex=\%02.2B\ \ \ total=%L%=\ [%{strftime(\"%d/%m/%y\ -\ %H:%M\")}]\ %04l,%04v:%p%%
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+"set statusline=%{HasPaste()}%F%m%r%h%w\ \ \ %{&ff},%Y\ \ \ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}ascii=\%03.3b,hex=\%02.2B\ \ \ total=%L%=\ [%{strftime(\"%d/%m/%y\ -\ %H:%M\")}]\ %04l,%04v:%p%%
 " Always hide the statusline
 set laststatus=2
 
@@ -206,6 +207,15 @@ let g:NERDAltDelims_java = 1
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
+
+" js
+" ---
+autocmd FileType js setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
+" ts
+"  ---
+autocmd FileType typescript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
 " CSS
 " " ---
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
@@ -214,21 +224,22 @@ autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 " ---
 autocmd BufNewFile,BufRead *.rst setlocal ft=rst
 autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=81
-\ formatoptions+=aw textwidth=78
+\ formatoptions+=aw textwidth=80
 
 " python
 " ------
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-\ formatoptions+=croq softtabstop=4 textwidth=79 smartindent
+autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=81
+\ formatoptions+=croq softtabstop=4 textwidth=80 smartindent
 
 " markdown
 " --------
 autocmd BufNewFile,BufRead *.markdown,*.md setf mkd
-autocmd FileType mkd setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
-\ formatoptions+=aw softtabstop=4 textwidth=78 smartindent
+autocmd FileType mkd setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=81
+\ formatoptions+=aw softtabstop=4 textwidth=80 smartindent
 
 " tex
 " ------
 autocmd BufNewFile,BufRead *.tex setlocal ft=tex
 autocmd FileType tex setlocal noautoindent nocindent nosmartindent spell expandtab shiftwidth=4 tabstop=8 colorcolumn=81
-\ formatoptions+=aw softtabstop=4 textwidth=79 indentexpr=
+\ formatoptions+=aw softtabstop=4 textwidth=80 indentexpr=
+
