@@ -105,7 +105,7 @@ set tabstop=4
 set sw=4
 
 " Status line
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 "set statusline=%{HasPaste()}%F%m%r%h%w\ \ \ %{&ff},%Y\ \ \ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}ascii=\%03.3b,hex=\%02.2B\ \ \ total=%L%=\ [%{strftime(\"%d/%m/%y\ -\ %H:%M\")}]\ %04l,%04v:%p%%
 " Always hide the statusline
 set laststatus=2
