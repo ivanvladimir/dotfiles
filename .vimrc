@@ -1,9 +1,70 @@
-" Pathogen (Plugging manager)
-call pathogen#infect()
-call pathogen#helptags()
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" No Vi Compatibility. That just sucks.
-set nocompatible
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+hi Normal guibg=black
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'w0rp/ale'
+Plugin 'itchyny/lightline.vim'
+Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'vim-airline/vim-airline'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'valloric/youcompleteme'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'pangloss/vim-javascript'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'leafgarland/typescript-vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+map <C-n> :NERDTreeToggle<CR>
+
+set background=dark
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 " Set map leader
 let mapleader = ','
@@ -24,12 +85,6 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-if $COLORTERM == 'gnome-terminal'
-	  set t_Co=256
-endif
-set background=dark
-colorscheme wombat256i
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -38,10 +93,6 @@ set autoread
 " aunmenu Help.
 " aunmenu Window.
 let no_buffers_menu=1
-
-" Mouse
-set mouse=
-set mousehide
 
 " this makes the mouse paste a block of text without formatting it 
 " (good for code)
@@ -100,15 +151,16 @@ set wildmode=list:longest
 set autoindent  smartindent
 
 " Tab Settings
+" tabstop:          Width of tab character
+" softtabstop:      Fine tunes the amount of white space to be added
+" shiftwidth        Determines the amount of whitespace to add in normal mode
+" expandtab:        When on uses space instead of tabs
 set smarttab
-set tabstop=4
-set sw=4
+set tabstop     =4
+set softtabstop =4
+set shiftwidth  =4
+set expandtab
 
-" Status line
-set rtp+=/usr/share/powerline/bindings/vim/
-"set statusline=%{HasPaste()}%F%m%r%h%w\ \ \ %{&ff},%Y\ \ \ %{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}ascii=\%03.3b,hex=\%02.2B\ \ \ total=%L%=\ [%{strftime(\"%d/%m/%y\ -\ %H:%M\")}]\ %04l,%04v:%p%%
-" Always hide the statusline
-set laststatus=2
 
 " MiniBuffer 
 let g:miniBufExplMapWindowNavVim = 1 
@@ -144,47 +196,8 @@ let g:bufExplorerSortBy = "name"
 
 autocmd BufRead,BufNew :call UMiniBufExplorer
 
-"""""""""""""""""""""""""""""""""""
-" Adapt the status line accourding to the window
-"""""""""""""""""""""""""""""""""""
-if has("autocmd")
-    au FileType qf
-                \ if &buftype == "quickfix" |
-                \     setlocal statusline=%2*%-3.3n%0* |
-                \     setlocal statusline+=\ \[Compiler\ Messages\] |
-                \     setlocal statusline+=%=%2*\ %<%P |
-                \ endif
-
-    fun! <SID>FixMiniBufExplorerTitle()
-        if "-MiniBufExplorer-" == bufname("%")
-            setlocal statusline=%2*%-3.3n%0*
-            setlocal statusline+=\[Buffers\]
-            setlocal statusline+=%=%2*\ %<%P
-        endif
-    endfun
-
-    au BufWinEnter *
-                \ let oldwinnr=winnr() |
-                \ windo call <SID>FixMiniBufExplorerTitle() |
-                \ exec oldwinnr . " wincmd w"
-endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 "Hide abandon buffers in order to not lose undo history.
 set hid
-
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    else
-        return ''
-    endif
-endfunction
-
-" Syntastic pluging
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -200,46 +213,4 @@ let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-
-" js
-" ---
-autocmd FileType js setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-
-" ts
-"  ---
-autocmd FileType typescript setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-
-" CSS
-" " ---
-autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-
-" rst
-" ---
-autocmd BufNewFile,BufRead *.rst setlocal ft=rst
-autocmd FileType rst setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=81
-\ formatoptions+=aw textwidth=80
-
-" python
-" ------
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=81
-\ formatoptions+=croq softtabstop=4 textwidth=80 smartindent
-
-" markdown
-" --------
-autocmd BufNewFile,BufRead *.markdown,*.md setf mkd
-autocmd FileType mkd setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=81
-\ formatoptions+=aw softtabstop=4 textwidth=80 smartindent
-
-" tex
-" ------
-autocmd BufNewFile,BufRead *.tex setlocal ft=tex
-autocmd FileType tex setlocal noautoindent nocindent nosmartindent spell expandtab shiftwidth=4 tabstop=8 colorcolumn=81
-\ formatoptions+=aw softtabstop=4 textwidth=80 indentexpr=
 
