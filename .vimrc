@@ -26,6 +26,9 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'pangloss/vim-javascript'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'vim-scripts/vim-auto-save'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -214,3 +217,11 @@ let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['python']
+
+" Enable autosave
+let g:auto_save = 1
+
+" Formating files
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown tw=80 fo+=t fo-=l colorcolumn=80 spell spelllang=es_mx wrap
