@@ -20,7 +20,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'vim-airline/vim-airline'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'valloric/youcompleteme'
+"Plugin 'valloric/youcompleteme'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'pangloss/vim-javascript'
@@ -221,7 +221,7 @@ let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['python']
 
 " Enable autosave
-let g:auto_save = 1
+let g:auto_save =  1800
 
 " Formating files
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown tw=80 fo+=t fo-=l colorcolumn=80 spell spelllang=es_mx wrap
