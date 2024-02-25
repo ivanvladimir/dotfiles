@@ -10,6 +10,7 @@ hi Normal guibg=black
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'prettier/vim-prettier'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
@@ -20,7 +21,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'vim-airline/vim-airline'
 Plugin 'ryanoasis/vim-devicons'
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'pangloss/vim-javascript'
