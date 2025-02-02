@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'w0rp/ale'
+Plug 'kylechui/nvim-surrounf'
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'easymotion/vim-easymotion'
@@ -26,6 +27,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'kdheepak/lazygit.nvim'
 call plug#end()
 " The following are examples of different formats supported.
 
